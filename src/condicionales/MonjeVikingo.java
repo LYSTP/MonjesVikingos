@@ -1,66 +1,65 @@
 package condicionales;
 
-
 public class MonjeVikingo {
-	
+
 	private String estado;
 	private int ataque;
 	private int vida;
-	
+
 	public MonjeVikingo() {
 		this.estado = "normal";
 		this.ataque = 10;
 		this.vida = 100;
 	}
-	
+
 	private void recibirAtaque(MonjeVikingo vikingo) {
-		
+
 		if (this.estado.equals("normal")) {
 			this.vida -= vikingo.ataque;
 			this.estado = "colerico";
 			this.ataque = 20;
 			return;
 		}
-		
+
 		if (this.estado.equals("colerico")) {
 			this.vida -= vikingo.ataque * 2;
 			this.estado = "berserker";
 			this.ataque = 30;
 			return;
 		}
-		
+
 		if (this.estado.equals("berserker")) {
 			this.vida -= vikingo.ataque / 2;
 			return;
 		}
 	}
-	
+
 	public void atacar(MonjeVikingo vikingo) {
-		
+
 		if (this.estado.equals("calmado")) {
 			this.estado = "normal";
 		}
-		
+
 		vikingo.recibirAtaque(this);
 	}
-	
+
 	public void meditar() {
-		
+
 		if (this.estado.equals("normal")) {
 			this.estado = "calmado";
 		}
-		
+
 		else {
 			this.estado = "normal";
 			this.ataque = 10;
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Vikingo" + this.estado + " " + this.vida;
 	}
-	
+
 	public static void main(String[] args) {
 
 		MonjeVikingo vikingo = new MonjeVikingo();
@@ -107,5 +106,5 @@ public class MonjeVikingo {
 		vikingoOtro.atacar(vikingo);
 		System.out.println("vikingo es un " + vikingo);
 	}
-	
+
 }
